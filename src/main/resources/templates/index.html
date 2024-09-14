@@ -1,10 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+    <header>
+        <h1>Crypto Market Dashboard</h1>
+    </header>
 
+    <main>
+        <section class="market-section">
+            <h2>Spot Markets</h2>
+            <table class="market-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Coin</th>
+                        <th>Pair</th>
+                        <th>Price</th>
+                        <th>24h Volume</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Bitcoin</td>
+                        <td>BTC/USD</td>
+                        <td>$54,500.70</td>
+                        <td>$24,482,990</td>
+                        <td>Recently</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Ethereum</td>
+                        <td>ETH/USD</td>
+                        <td>$2,232.10</td>
+                        <td>$13,749,360</td>
+                        <td>Recently</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="exchange-section">
+            <h2>Top Exchanges</h2>
+            <table class="exchange-table">
+                <thead>
+                    <tr>
+                        <th>Exchange</th>
+                        <th>24h Volume</th>
+                        <th>Monthly Visits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Binance</td>
+                        <td>$12,000,000,000</td>
+                        <td>53.9M</td>
+                    </tr>
+                    <tr>
+                        <td>Bybit</td>
+                        <td>$9,000,000,000</td>
+                        <td>22.5M</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="historical-data-section">
+            <h2>Bitcoin Historical Data</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Market Cap</th>
+                        <th>Volume</th>
+                        <th>Close Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-09-07</td>
+                        <td>$1,000,000,000,000</td>
+                        <td>$30,000,000,000</td>
+                        <td>$54,500</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-06</td>
+                        <td>$975,000,000,000</td>
+                        <td>$27,000,000,000</td>
+                        <td>$53,920</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Crypto Dashboard</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

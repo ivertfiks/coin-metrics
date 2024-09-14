@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    padding: 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+header p {
+    color: #777;
+}
+
+.navbar {
+    background-color: #333;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0;
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover, .navbar ul li a.active {
+    background-color: #444;
+}
+
+main {
+    margin: 20px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 10px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filters .search-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.filters .reset-btn {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.coins-table {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
+
+thead th, tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+}
+
+
+.crypto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.crypto-title h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.crypto-title .rank {
+    font-size: 14px;
+    color: #777;
+    margin-left: 10px;
+}
+
+.crypto-price h2 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.crypto-price .price-change {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.crypto-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.market-info p, .range p {
+    margin: 5px 0;
+}
+
+.crypto-chart {
+    padding: 20px;
+    float: right;
+    width: 30%;
+}
+
+.crypto-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.historical-data {
+    padding: 20px;
+}
+
+.historical-data table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historical-data table th, .historical-data table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.recent-news {
+    padding: 20px;
+}
