@@ -35,4 +35,4 @@ build/
 .class
 
 
-application.properties
+application-local.properties
