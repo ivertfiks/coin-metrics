@@ -18,4 +18,12 @@ public class Coin {
     private double currentPrice;
     private double maxForDay;
     private double minForDay;
+
+    private String image;
+    private int marketCapRank;
+    private double highDay;
+    private double lowDay;
+    private double priceChangeDayInCurrency;
+    private double priceChangePercentageDayInCurrency;
+    private double sparkline; // need to think about type of data
 }

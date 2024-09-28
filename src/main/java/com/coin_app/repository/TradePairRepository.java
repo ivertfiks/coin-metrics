@@ -1,10 +1,10 @@
 package com.coin_app.repository;
 
-import com.coin_app.entity.Coin;
+import com.coin_app.entity.TradePair;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CoinRepository extends CrudRepository<Coin, Integer> {
+public interface TradePairRepository extends CrudRepository<TradePair, Integer> {
 
 }

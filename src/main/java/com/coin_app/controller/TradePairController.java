@@ -1,19 +1,18 @@
 package com.coin_app.controller;
 
-import com.coin_app.service.CoinService;
+
+import com.coin_app.service.TradePairService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/coin")
 @Slf4j
 @RequiredArgsConstructor
-public class CoinController {
+@RequestMapping("/tradePair")
+public class TradePairController {
 
-    private final CoinService coinService;
-
-
+    private final TradePairService tradePairService;
 
 }
