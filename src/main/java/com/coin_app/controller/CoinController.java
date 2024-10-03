@@ -6,7 +6,9 @@ import com.coin_app.service.CoinService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +22,10 @@ public class CoinController {
     private final CoinGeckoApiClient coinClient;
 
     @GetMapping("/market-data")
-    public String getCoinMarketData(@RequestParam("currency") String currency) {
+    public String getCoinMarketData(@RequestParam(value="currency", required = false, defaultValue = "usd") String currency, Model model) {
         List<Coin> coinData = coinClient.getCoinMarketData(currency);
-        return "";
+        model.addAttribute("coins", coinData);
+        return "coins";
     }
 
 

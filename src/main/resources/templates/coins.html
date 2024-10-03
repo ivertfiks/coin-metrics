@@ -1,102 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Cryptocurrencies</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
+<head th:replace="~{fragments/header-fragment.html :: head}">
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="coins.html" class="active">Coins</a></li>
-                <li><a href="exchanges.html">Exchanges</a></li>
-            </ul>
-        </nav>
-        <h1>All Cryptocurrencies</h1>
-        <p>View a full list of active cryptocurrencies</p>
-    </header>
+<header class="navbar" th:replace="~{fragments/navigation-fragment.html :: navbar}"></header>
 
-    <main>
-        <section class="filters">
-            <button>Market Cap</button>
-            <button>24h Volume</button>
-            <button>24h Change</button>
-            <button>Price</button>
-            <button>Category</button>
-            <button>Exchange</button>
-            <button>Platform</button>
-            <button class="search-btn">Search</button>
-            <button class="reset-btn">Reset</button>
-        </section>
+<main>
+  <!--        <section class="filters">-->
+  <!--            <button>Market Cap</button>-->
+  <!--            <button>24h Volume</button>-->
+  <!--            <button>24h Change</button>-->
+  <!--            <button>Price</button>-->
+  <!--            <button>Category</button>-->
+  <!--            <button>Exchange</button>-->
+  <!--            <button>Platform</button>-->
+  <!--            <button class="search-btn">Search</button>-->
+  <!--            <button class="reset-btn">Reset</button>-->
+  <!--        </section>-->
 
-        <section class="coins-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Coin</th>
-                        <th>Price</th>
-                        <th>1h</th>
-                        <th>24h</th>
-                        <th>7d</th>
-                        <th>30d</th>
-                        <th>24h Volume</th>
-                        <th>Circulating Supply</th>
-                        <th>Total Supply</th>
-                        <th>Market Cap</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Bitcoin (BTC)</td>
-                        <td>$59,774.29</td>
-                        <td class="red">-0.3%</td>
-                        <td class="green">+2.9%</td>
-                        <td class="green">+10.0%</td>
-                        <td class="green">+2.3%</td>
-                        <td>$32,727,534,639</td>
-                        <td>19,753,984</td>
-                        <td>21M</td>
-                        <td>$1,180,780,407,779</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Ethereum (ETH)</td>
-                        <td>$2,410.46</td>
-                        <td class="red">-0.1%</td>
-                        <td class="green">+2.1%</td>
-                        <td class="green">+5.9%</td>
-                        <td class="red">-7.9%</td>
-                        <td>$12,623,128,901</td>
-                        <td>120,334,871</td>
-                        <td>120.33M</td>
-                        <td>$290,053,839,060</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tether (USDT)</td>
-                        <td>$1</td>
-                        <td class="green">+0.0%</td>
-                        <td class="green">+0.1%</td>
-                        <td class="green">+0.1%</td>
-                        <td class="green">+0.0%</td>
-                        <td>$47,731,358,054</td>
-                        <td>118,581,493,585</td>
-                        <td>118.58B</td>
-                        <td>$118,528,116,980</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+  <section class="coins-table">
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Coin</th>
+        <th>Price</th>
+        <th>24h Change (in $)</th>
+        <th>24h Change (%)</th>
+        <th>High 24h</th>
+        <th>Low 24h</th>
+        <th>Market Cap Rank</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="coin, iterStat : ${coins}">
+        <td th:text="${iterStat.count}"></td>
+        <td class="row">
+          <img th:src="${coin.image}" alt="Coin Image" class="coin-icon">
+          <span th:text="${coin.name} + ' (' + coin.symbol + ')'"></span>
+        </td>
+        <td th:text="${coin.currentPrice}"></td>
+        <td th:text="${coin.priceChangeDayInCurrency}"></td>
+        <td th:text="${coin.priceChangePercentageDayInCurrency} + '%'"></td>
+        <td th:text="${coin.highDay}"></td>
+        <td th:text="${coin.lowDay}"></td>
+        <td th:text="${coin.marketCapRank}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
 
-    <footer>
-        <p>&copy; 2024 Crypto Dashboard</p>
-    </footer>
+</main>
+
+<footer>
+  <p>&copy; 2024 Crypto Dashboard</p>
+</footer>
 </body>
-</html>

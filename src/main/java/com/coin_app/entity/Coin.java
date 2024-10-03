@@ -1,9 +1,7 @@
 package com.coin_app.entity;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -15,14 +13,27 @@ public class Coin {
     private String id;
 
     private String symbol;
+
+    private String name;
+
+    @JsonProperty("current_price")
     private double currentPrice;
-    private double maxForDay;
-    private double minForDay;
+
     private String image;
+
+    @JsonProperty("market_cap_rank")
     private int marketCapRank;
+
+    @JsonProperty("high_24h")
     private double highDay;
+
+    @JsonProperty("low_24h")
     private double lowDay;
+
+    @JsonProperty("price_change_24h")
     private double priceChangeDayInCurrency;
+
+    @JsonProperty("price_change_percentage_24h")
     private double priceChangePercentageDayInCurrency;
 
 }
