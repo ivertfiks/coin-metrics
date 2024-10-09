@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 @Entity
 public class Coin {
-
     @Id
     private String id;
 

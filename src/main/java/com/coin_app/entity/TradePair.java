@@ -3,17 +3,14 @@ package com.coin_app.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 public class TradePair {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     @OneToOne
     private Coin base;
-
     @OneToOne
     private Coin target;
     private String marketName;

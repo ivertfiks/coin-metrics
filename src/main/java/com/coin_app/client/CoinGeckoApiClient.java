@@ -1,7 +1,10 @@
 package com.coin_app.client;
 
+import com.coin_app.client.enums.ApiEndpoints;
 import com.coin_app.entity.Coin;
 import java.util.List;
+
+import com.coin_app.entity.Exchange;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,11 +22,10 @@ public class CoinGeckoApiClient {
     @Value("${coin-gecko.base-url}")
     private String baseUrl;
 
-    private static final String COIN_MARKET_DATA = "/coins/markets";
 
     public List<Coin> getCoinMarketData(String currency){
         return restClient.get()
-            .uri(baseUrl + COIN_MARKET_DATA+"?vs_currency="+currency)
+            .uri(baseUrl + ApiEndpoints.COIN_MARKET_DATA.getEndpoint()+"?vs_currency="+currency)
 //            .uri(baseUrl + COIN_MARKET_DATA + "?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
             .header("Content-Type", "application/json")
             .header("x-cg-pro-api-key", apiKey)
@@ -31,6 +33,17 @@ public class CoinGeckoApiClient {
             .bodyToFlux(Coin.class)
             .collectList()
             .block();
+    }
+
+    public List<Exchange> getExchangesData(){
+        return restClient.get()
+                .uri(baseUrl + ApiEndpoints.EXCHANGE_DATA.getEndpoint())
+                .header("Content-Type", "application/json")
+                .header("x-cg-pro-api-key", apiKey)
+                .retrieve()
+                .bodyToFlux(Exchange.class)
+                .collectList()
+                .block();
     }
 
 
