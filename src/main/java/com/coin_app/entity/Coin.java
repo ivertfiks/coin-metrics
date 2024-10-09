@@ -1,6 +1,7 @@
 package com.coin_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -35,4 +36,12 @@ public class Coin {
     @JsonProperty("price_change_percentage_24h")
     private double priceChangePercentageDayInCurrency;
 
+    public void setImage(Object image) {
+        if (image instanceof String) {
+            this.image = (String) image;  // Если это строка, сохраняем строку
+        } else if (image instanceof JsonNode) {
+            JsonNode node = (JsonNode) image;
+            this.image = node.has("thumb") ? node.get("thumb").asText() : null;  // Если объект, сохраняем thumb
+        }
+    }
 }

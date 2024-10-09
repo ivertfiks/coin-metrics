@@ -35,9 +35,19 @@ public class CoinGeckoApiClient {
             .block();
     }
 
+    public Coin getCoinDataById(String id){
+        return restClient.get()
+                .uri(baseUrl + ApiEndpoints.COIN_MARKET_DATA.getEndpoint()+id)
+                .header("Content-Type", "application/json")
+                .header("x-cg-pro-api-key", apiKey)
+                .retrieve()
+                .bodyToFlux(Coin.class)
+                .blockFirst();
+    }
+
     public List<Exchange> getExchangesData(){
         return restClient.get()
-                .uri(baseUrl + ApiEndpoints.EXCHANGE_DATA.getEndpoint())
+                .uri(baseUrl + ApiEndpoints.COIN_DATA_BY_ID.getEndpoint())
                 .header("Content-Type", "application/json")
                 .header("x-cg-pro-api-key", apiKey)
                 .retrieve()
@@ -45,7 +55,5 @@ public class CoinGeckoApiClient {
                 .collectList()
                 .block();
     }
-
-
 
 }

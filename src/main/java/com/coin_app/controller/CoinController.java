@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -24,6 +25,13 @@ public class CoinController {
         List<Coin> coinData = coinClient.getCoinMarketData(currency);
         model.addAttribute("coins", coinData);
         return "coins";
+    }
+
+    @GetMapping("/coin-data/{id}")
+    public String getCoinDataById(@PathVariable String id, Model model) {
+        Coin coinData = coinClient.getCoinDataById(id);
+        model.addAttribute("coin", coinData);
+        return "crypto_detail";
     }
 
 
