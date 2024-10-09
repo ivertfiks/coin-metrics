@@ -9,7 +9,7 @@
             <span class="rank" th:text="'#' + ${coin.marketCapRank}">#1</span>
         </div>
         <div class="crypto-price">
-            <h2>$</h2><h2 th:text="${coin.currentPrice}"></h2>
+            <h2 th:text="'$' + ${coin.currentPrice}"></h2>
             <span class="price-change" th:class="${coin.priceChangePercentageDayInCurrency} > 0 ? 'green' : 'red'" th:text="'(' + ${coin.priceChangePercentageDayInCurrency} + '%)'">+2.9%</span>
         </div>
     </section>
