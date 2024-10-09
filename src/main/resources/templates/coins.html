@@ -34,7 +34,7 @@
         <td th:text="${iterStat.count}"></td>
         <td class="row">
           <img th:src="${coin.image}" alt="Coin Image" class="coin-icon">
-          <span th:text="${coin.name}"></span>
+          <a th:href="@{/coin-data/{id}(id=${coin.id})}" th:text="${coin.name}"></a>
         </td>
         <td th:text="${coin.currentPrice}"></td>
         <td th:text="${coin.priceChangeDayInCurrency}"></td>

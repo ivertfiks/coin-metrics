@@ -1,10 +1,24 @@
-<head th:replace="~{fragments/header-fragment.html :: head}"></head>
-
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="exchanges.css">
+    <title>Торговые Площадки</title>
+</head>
 <body>
-<header class="navbar" th:replace="~{fragments/navigation-fragment.html :: navbar}"></header>
+<header>
+    <h1>Торговые Площадки</h1>
+    <p>Информация о популярных обменах криптовалют.</p>
+</header>
 
 <main>
-    <section class="coins-table">
+    <div class="filters">
+        <button class="search-btn">Поиск</button>
+        <button class="reset-btn">Сброс</button>
+    </div>
+
+    <div class="coins-table">
         <table>
             <thead>
             <tr>
@@ -17,25 +31,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="exchange, iterStat : ${exchanges}">
-                <td th:text="${iterStat.index + 1}"></td>
-                <td class="row">
-                    <img th:src="${exchange.image}" alt="Логотип ${exchange.name}" class="coin-icon">
-                    <span th:text="${exchange.name}"></span>
-                </td>
+            <tr th:each="exchange : ${exchanges}">
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${exchange.name}"></td>
                 <td th:text="${exchange.yearEstablished}"></td>
                 <td th:text="${exchange.trustScore} + '/10'" class="green"></td>
                 <td th:text="${exchange.tradeVolume24hBtc} + ' BTC'"></td>
                 <td>
-                    <a th:href="${exchange.url}" th:text="'Посетить ' + ${exchange.name}"></a>
+                    <a th:href="${exchange.url}" th:text="'Visit ' + ${exchange.name}"></a>
                 </td>
             </tr>
             </tbody>
         </table>
-    </section>
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2024 Все права защищены</p>
-</footer>
 </body>
+</html>

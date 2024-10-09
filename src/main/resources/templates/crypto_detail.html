@@ -1,140 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Price - Detailed Information</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
+<head th:replace="~{fragments/header-fragment.html :: head}">
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="coins.html">Coins</a></li>
-                <li><a href="exchanges.html">Exchanges</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="navbar" th:replace="~{fragments/navigation-fragment.html :: navbar}"></header>
 
-    <main>
-        <section class="crypto-header">
-            <div class="crypto-title">
-                <h1>Bitcoin (BTC) Price</h1>
-                <span class="rank">#1</span>
+<main>
+    <section class="crypto-header">
+        <div class="crypto-title">
+            <h1 th:text="${coin.name} + ' (' + ${coin.symbol} + ') Price'"></h1>
+            <span class="rank" th:text="'#' + ${coin.marketCapRank}">#1</span>
+        </div>
+        <div class="crypto-price">
+            <h2>$</h2><h2 th:text="${coin.currentPrice}"></h2>
+            <span class="price-change" th:class="${coin.priceChangePercentageDayInCurrency} > 0 ? 'green' : 'red'" th:text="'(' + ${coin.priceChangePercentageDayInCurrency} + '%)'">+2.9%</span>
+        </div>
+    </section>
+
+    <section class="crypto-chart">
+        <h3>Price Chart</h3>
+        <div id="chart">
+            <canvas id="priceChart"></canvas>
+        </div>
+        <!-- This is where you can integrate Chart.js or another chart library -->
+    </section>
+
+    <section class="crypto-summary">
+        <div class="summary-info">
+            <div class="range">
+                <p th:text="'24h Range: $' + ${coin.lowDay} + ' - $' + ${coin.highDay}">24h Range: $57,668.86 - $60,654.99</p>
             </div>
-            <div class="crypto-price">
-                <h2>$59,834.38</h2>
-                <span class="price-change green">+2.9%</span>
+            <div class="market-info">
+                <p><strong>Market Cap:</strong> <span th:text="${coin.marketCapRank}"> $1,181,967,345,662</span></p>
+                <p><strong>Fully Diluted Valuation:</strong> <span th:text="${coin.marketCapRank}"> $1,256,521,938,000</span></p>
+                <p><strong>24 Hour Trading Volume:</strong> <span th:text="${coin.marketCapRank}"> $32,724,141,947</span></p>
+                <p><strong>Circulating Supply:</strong> <span th:text="${coin.marketCapRank}">19,753,984 BTC</span></p>
+                <p><strong>Total Supply:</strong> <span th:text="${coin.marketCapRank}">21,000,000 BTC</span></p>
+                <p><strong>Max Supply:</strong> <span th:text="${coin.marketCapRank}">21,000,000 BTC</span></p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="crypto-chart">
-            <h3>Price Chart</h3>
-            <div id="chart">
-                <canvas id="priceChart"></canvas>
-            </div>
-            <!-- This is where you can integrate Chart.js or another chart library -->
-        </section>
+    <section class="crypto-details">
+        <div class="info">
+            <h4>Info</h4>
+            <p><strong>Website:</strong> <a th:href="'https://bitcoin.org'">bitcoin.org</a></p>
+            <p><strong>Whitepaper:</strong> <a href="#">Whitepaper Link</a></p>
+            <p><strong>Explorers:</strong> <a href="#">Mempool</a></p>
+            <p><strong>Wallets:</strong> <a href="#">Ledger</a></p>
+        </div>
 
-        <section class="crypto-summary">
-            <div class="summary-info">
-                <div class="range">
-                    <p>24h Range: $57,668.86 - $60,654.99</p>
-                </div>
-                <div class="market-info">
-                    <p><strong>Market Cap:</strong> $1,181,967,345,662</p>
-                    <p><strong>Fully Diluted Valuation:</strong> $1,256,521,938,000</p>
-                    <p><strong>24 Hour Trading Volume:</strong> $32,724,141,947</p>
-                    <p><strong>Circulating Supply:</strong> 19,753,984 BTC</p>
-                    <p><strong>Total Supply:</strong> 21,000,000 BTC</p>
-                    <p><strong>Max Supply:</strong> 21,000,000 BTC</p>
-                </div>
-            </div>
-        </section>
+        <div class="socials">
+            <h4>Community</h4>
+            <p><a href="#">Twitter</a></p>
+            <p><a href="#">Facebook</a></p>
+            <p><a href="#">Bitcointalk.org</a></p>
+        </div>
+    </section>
 
+    <section class="historical-data">
+        <h3>Historical Data</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>1h</th>
+                <th>24h</th>
+                <th>7d</th>
+                <th>14d</th>
+                <th>30d</th>
+                <th>1y</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="red">-0.2%</td>
+                <td class="green" th:text="'+' + ${coin.priceChangePercentageDayInCurrency} + '%'">+2.9%</td>
+                <td class="green">+10.0%</td>
+                <td class="green">+1.4%</td>
+                <td class="green">+2.3%</td>
+                <td class="green">+127.5%</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 
+    <section class="recent-news">
+        <h3>Recently happened to Bitcoin</h3>
+        <p>Bitcoin has fallen to $56,700, but Mt. Gox will begin distributing $9 billion in BTC to creditors.</p>
+        <p>Bitcoin reclaimed $70,000 as US inflation slowed down.</p>
+    </section>
+</main>
 
-        <section class="crypto-details">
-            <div class="info">
-                <h4>Info</h4>
-                <p><strong>Website:</strong> <a href="https://bitcoin.org">bitcoin.org</a></p>
-                <p><strong>Whitepaper:</strong> <a href="#">Whitepaper Link</a></p>
-                <p><strong>Explorers:</strong> <a href="#">Mempool</a></p>
-                <p><strong>Wallets:</strong> <a href="#">Ledger</a></p>
-            </div>
+<footer>
+    <p>&copy; 2024 Crypto Dashboard</p>
+</footer>
 
-            <div class="socials">
-                <h4>Community</h4>
-                <p><a href="#">Twitter</a></p>
-                <p><a href="#">Facebook</a></p>
-                <p><a href="#">Bitcointalk.org</a></p>
-            </div>
-        </section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Optional charting library -->
 
-        <section class="historical-data">
-            <h3>Historical Data</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>1h</th>
-                        <th>24h</th>
-                        <th>7d</th>
-                        <th>14d</th>
-                        <th>30d</th>
-                        <th>1y</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="red">-0.2%</td>
-                        <td class="green">+2.9%</td>
-                        <td class="green">+10.0%</td>
-                        <td class="green">+1.4%</td>
-                        <td class="green">+2.3%</td>
-                        <td class="green">+127.5%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="recent-news">
-            <h3>Recently happened to Bitcoin</h3>
-            <p>Bitcoin has fallen to $56,700, but Mt. Gox will begin distributing $9 billion in BTC to creditors.</p>
-            <p>Bitcoin reclaimed $70,000 as US inflation slowed down.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Crypto Dashboard</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Optional charting library -->
-
-    <script type="text/javascript">
-
-        const ctx = document.getElementById('priceChart').getContext('2d');
-const priceChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['18:00', '21:00', '00:00', '03:00', '06:00', '09:00'],
-        datasets: [{
-            label: 'BTC Price',
-            data: [58000, 59000, 60000, 60500, 60200, 59800],
-            borderColor: 'green',
-            fill: false,
-            tension: 0.1
-        }]
-    },
-    options: {
-        scales: {
-            x: { beginAtZero: false },
-            y: { beginAtZero: false }
+<script type="text/javascript">
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    const priceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['18:00', '21:00', '00:00', '03:00', '06:00', '09:00'],
+            datasets: [{
+                label: 'BTC Price',
+                data: [58000, 59000, 60000, 60500, 60200, 59800],
+                borderColor: 'green',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                x: { beginAtZero: false },
+                y: { beginAtZero: false }
+            }
         }
-    }
-});
-
-
-    </script>
+    });
+</script>
 </body>
 </html>

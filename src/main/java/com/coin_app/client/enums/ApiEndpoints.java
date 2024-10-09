@@ -3,7 +3,7 @@ package com.coin_app.client.enums;
 public enum ApiEndpoints {
 
     COIN_MARKET_DATA("/coins/markets"),
-    COIN_DATA_BY_ID("/coins"),
+    COIN_DATA_BY_ID("/coins/"),
     EXCHANGE_DATA("/exchanges");
 
     private final String endpoints;

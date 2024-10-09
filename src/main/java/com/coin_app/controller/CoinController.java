@@ -28,7 +28,7 @@ public class CoinController {
     }
 
     @GetMapping("/coin-data/{id}")
-    public String getCoinDataById(@PathVariable String id, Model model) {
+    public String getCoinDataById(@PathVariable(value = "id") String id, Model model) {
         Coin coinData = coinClient.getCoinDataById(id);
         model.addAttribute("coin", coinData);
         return "crypto_detail";
