@@ -35,6 +35,18 @@ public class CoinGeckoApiClient {
             .block();
     }
 
+    public Coin getCoinDataById(String id){
+        return restClient.get()
+                .uri(baseUrl + ApiEndpoints.COIN_DATA_BY_ID.getEndpoint()+id)
+//            .uri(baseUrl + COIN_MARKET_DATA + "?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+                .header("Content-Type", "application/json")
+                .header("x-cg-pro-api-key", apiKey)
+                .retrieve()
+                .bodyToFlux(Coin.class)
+                .blockFirst();
+    }
+
+
     public List<Exchange> getExchangesData(){
         return restClient.get()
                 .uri(baseUrl + ApiEndpoints.EXCHANGE_DATA.getEndpoint())
