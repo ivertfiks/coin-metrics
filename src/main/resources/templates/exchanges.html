@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="exchange : ${exchanges}">
+            <tr th:each="exchange, iterStat : ${exchanges}">
                 <td th:text="${iterStat.count}"></td>
                 <td th:text="${exchange.name}"></td>
                 <td th:text="${exchange.yearEstablished}"></td>

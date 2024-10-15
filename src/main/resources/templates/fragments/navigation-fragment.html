@@ -1,8 +1,8 @@
 <nav class="navbar" th:fragment="navbar">
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="coins.html" class="active">Coins</a></li>
-    <li><a href="../exchanges.html">Exchanges</a></li>
+    <li><a th:href="@{/}">Home</a></li>
+    <li><a th:href="@{/market-data}" class="active">Coins</a></li>
+    <li><a th:href="@{/exchanges-data}">Exchanges</a></li>
   </ul>
 </nav>
 <h1>All Cryptocurrencies</h1>

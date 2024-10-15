@@ -36,6 +36,14 @@ public class Coin {
     @JsonProperty("price_change_percentage_24h")
     private double priceChangePercentageDayInCurrency;
 
+    @JsonProperty("market_data")
+    public void setMarketData(JsonNode marketData) {
+        JsonNode currentPriceNode = marketData.get("current_price");
+        if (currentPriceNode != null && currentPriceNode.has("usd")) {
+            this.currentPrice = currentPriceNode.get("usd").asDouble();
+        }
+    }
+
     public void setImage(Object image) {
         if (image instanceof String) {
             this.image = (String) image;  // Если это строка, сохраняем строку

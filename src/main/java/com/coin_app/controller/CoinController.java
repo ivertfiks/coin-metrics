@@ -20,7 +20,7 @@ public class CoinController {
     private final CoinService coinService;
     private final CoinGeckoApiClient coinClient;
 
-    @GetMapping("/market-data")
+    @GetMapping(value = {"/market-data", "/"})
     public String getCoinMarketData(@RequestParam(value="currency", required = false, defaultValue = "usd") String currency, Model model) {
         List<Coin> coinData = coinClient.getCoinMarketData(currency);
         model.addAttribute("coins", coinData);
