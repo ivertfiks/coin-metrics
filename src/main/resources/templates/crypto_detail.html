@@ -28,12 +28,12 @@
                 <p th:text="'24h Range: $' + ${coin.lowDay} + ' - $' + ${coin.highDay}">24h Range: $57,668.86 - $60,654.99</p>
             </div>
             <div class="market-info">
-                <p><strong>Market Cap:</strong> <span th:text="${coin.marketCapRank}"> $1,181,967,345,662</span></p>
-                <p><strong>Fully Diluted Valuation:</strong> <span th:text="${coin.marketCapRank}"> $1,256,521,938,000</span></p>
-                <p><strong>24 Hour Trading Volume:</strong> <span th:text="${coin.marketCapRank}"> $32,724,141,947</span></p>
-                <p><strong>Circulating Supply:</strong> <span th:text="${coin.marketCapRank}">19,753,984 BTC</span></p>
-                <p><strong>Total Supply:</strong> <span th:text="${coin.marketCapRank}">21,000,000 BTC</span></p>
-                <p><strong>Max Supply:</strong> <span th:text="${coin.marketCapRank}">21,000,000 BTC</span></p>
+                <p><strong>Market Cap:</strong> <span th:text="${coin.marketCapUsd}"> $1,181,967,345,662</span></p>
+                <p><strong>Fully Diluted Valuation:</strong> <span th:text="${coin.fullyDilutedValuationUsd}"> $1,256,521,938,000</span></p>
+                <p><strong>Total Trading Volume:</strong> <span th:text="${coin.totalVolumeUsd}"> $32,724,141,947</span></p>
+                <p><strong>Circulating Supply:</strong> <span th:text="${coin.circulatingSupply}">19,753,984 BTC</span></p>
+                <p><strong>Total Supply:</strong> <span th:text="${coin.totalSupply}">21,000,000 BTC</span></p>
+                <p><strong>Max Supply:</strong> <span th:text="${coin.maxSupply}">21,000,000 BTC</span></p>
             </div>
         </div>
     </section>
@@ -70,12 +70,12 @@
             </thead>
             <tbody>
             <tr>
-                <td class="red">-0.2%</td>
-                <td class="green" th:text="'+' + ${coin.priceChangePercentageDayInCurrency} + '%'">+2.9%</td>
-                <td class="green">+10.0%</td>
-                <td class="green">+1.4%</td>
-                <td class="green">+2.3%</td>
-                <td class="green">+127.5%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">-0.2%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+2.9%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+10.0%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+1.4%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+2.3%</td>
+                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+127.5%</td>
             </tr>
             </tbody>
         </table>
