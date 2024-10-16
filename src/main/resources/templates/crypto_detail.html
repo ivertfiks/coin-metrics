@@ -1,6 +1,7 @@
 <head th:replace="~{fragments/header-fragment.html :: head}">
 <body>
 <header class="navbar" th:replace="~{fragments/navigation-fragment.html :: navbar}"></header>
+<div th:replace="~{fragments/navigation-fragment.html :: widget}"></div>
 
 <main>
     <section class="crypto-header">
@@ -10,30 +11,25 @@
         </div>
         <div class="crypto-price">
             <h2 th:text="'$' + ${coin.currentPrice}"></h2>
-            <span class="price-change" th:class="${coin.priceChangePercentageDayInCurrency} > 0 ? 'green' : 'red'" th:text="'(' + ${coin.priceChangePercentageDayInCurrency} + '%)'">+2.9%</span>
+            <span class="price-change" th:class="${coin.priceChangePercentage24h} > 0 ? 'green' : 'red'" th:text="'(' + ${coin.priceChangePercentage24h} + '%)'">+2.9%</span>
         </div>
     </section>
 
-    <section class="crypto-chart">
-        <h3>Price Chart</h3>
-        <div id="chart">
-            <canvas id="priceChart"></canvas>
-        </div>
-        <!-- This is where you can integrate Chart.js or another chart library -->
-    </section>
+    <script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
+    <gecko-coin-price-chart-widget class="widget" locale="en" outlined="true" th:attr="coin-id=${coin.name}" initial-currency="usd" width="700" height="150"></gecko-coin-price-chart-widget>
+
 
     <section class="crypto-summary">
         <div class="summary-info">
             <div class="range">
-                <p th:text="'24h Range: $' + ${coin.lowDay} + ' - $' + ${coin.highDay}">24h Range: $57,668.86 - $60,654.99</p>
+                <p th:text="'24h Range: $' + ${coin.getFormattedLowDay} + ' - $' + ${coin.getFormattedHighDay}">24h Range: $57,668.86 - $60,654.99</p>
             </div>
             <div class="market-info">
-                <p><strong>Market Cap:</strong> <span th:text="${coin.marketCapUsd}"> $1,181,967,345,662</span></p>
-                <p><strong>Fully Diluted Valuation:</strong> <span th:text="${coin.fullyDilutedValuationUsd}"> $1,256,521,938,000</span></p>
-                <p><strong>Total Trading Volume:</strong> <span th:text="${coin.totalVolumeUsd}"> $32,724,141,947</span></p>
-                <p><strong>Circulating Supply:</strong> <span th:text="${coin.circulatingSupply}">19,753,984 BTC</span></p>
-                <p><strong>Total Supply:</strong> <span th:text="${coin.totalSupply}">21,000,000 BTC</span></p>
-                <p><strong>Max Supply:</strong> <span th:text="${coin.maxSupply}">21,000,000 BTC</span></p>
+                <p><strong>Market Cap:</strong> <span th:text="'$' + ${coin.getFormattedMarketCapUsd}"> $1,181,967,345,662</span></p>
+                <p><strong>Fully Diluted Valuation:</strong> <span th:text="'$' + ${coin.getFormattedFullyDilutedValuationUsd}"> $1,256,521,938,000</span></p>
+                <p><strong>Total Trading Volume:</strong> <span th:text="'$' + ${coin.getFormattedTotalVolumeUsd}"> $32,724,141,947</span></p>
+                <p><strong>Circulating Supply:</strong> <span th:text="${coin.getFormattedCirculatingSupply} + ' ' + BTC">19,753,984 BTC</span></p>
+                <p><strong>Total Supply:</strong> <span th:text="${coin.getFormattedTotalSupply} + ' ' + BTC ">21,000,000 BTC</span></p>
             </div>
         </div>
     </section>
@@ -60,7 +56,6 @@
         <table>
             <thead>
             <tr>
-                <th>1h</th>
                 <th>24h</th>
                 <th>7d</th>
                 <th>14d</th>
@@ -70,12 +65,11 @@
             </thead>
             <tbody>
             <tr>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">-0.2%</td>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+2.9%</td>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+10.0%</td>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+1.4%</td>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+2.3%</td>
-                <td class="green" th:text="${coin.priceChangePercentageDayInCurrency} + '%'">+127.5%</td>
+                <td class="green" th:text="${coin.priceChangePercentage24h} + '%'">+2.9%</td>
+                <td class="green" th:text="${coin.priceChangePercentage7d} + '%'">+10.0%</td>
+                <td class="green" th:text="${coin.priceChangePercentage14d} + '%'">+1.4%</td>
+                <td class="green" th:text="${coin.priceChangePercentage30d} + '%'">+2.3%</td>
+                <td class="green" th:text="${coin.priceChangePercentage1y} + '%'">+127.5%</td>
             </tr>
             </tbody>
         </table>

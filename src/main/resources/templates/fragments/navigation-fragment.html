@@ -5,5 +5,9 @@
     <li><a th:href="@{/exchanges-data}">Exchanges</a></li>
   </ul>
 </nav>
-<h1>All Cryptocurrencies</h1>
-<p>View a full list of active cryptocurrencies</p>
+
+<span th:fragment="widget">
+  <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
+  <gecko-coin-price-marquee-widget  locale="en" outlined="true" coin-ids="" initial-currency="usd"></gecko-coin-price-marquee-widget>
+</span>
+

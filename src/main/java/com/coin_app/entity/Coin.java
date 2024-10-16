@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.text.DecimalFormat;
+
 @Data
 @Entity
 public class Coin {
@@ -36,17 +38,24 @@ public class Coin {
     @JsonProperty("circulating_supply")
     private long circulatingSupply;
 
+    private double priceChangePercentage24h;
+
+    private double priceChangePercentage7d;
+
+    private double priceChangePercentage14d;
+
+    private double priceChangePercentage30d;
+
+    private double priceChangePercentage1y;
+
     @JsonProperty("total_supply")
     private long totalSupply;
 
-    @JsonProperty("max_supply")
-    private long maxSupply;
-
     @JsonProperty("high_24h")
-    private double highDay;
+    private long highDay;
 
     @JsonProperty("low_24h")
-    private double lowDay;
+    private long lowDay;
 
     @JsonProperty("price_change_24h")
     private double priceChangeDayInCurrency;
@@ -66,6 +75,16 @@ public class Coin {
             if (marketCapNode.has("usd")) {
                 this.marketCapUsd = marketCapNode.get("usd").asLong();
             }
+        }
+
+        JsonNode high24hNode = marketData.get("high_24h");
+        if (high24hNode != null && high24hNode.has("usd")) {
+            this.highDay = high24hNode.get("usd").asLong();
+        }
+
+        JsonNode low24hNode = marketData.get("low_24h");
+        if (low24hNode != null && low24hNode.has("usd")) {
+            this.lowDay = low24hNode.get("usd").asLong();
         }
 
         JsonNode fullyDilutedValuationNode = marketData.get("fully_diluted_valuation");
@@ -89,11 +108,30 @@ public class Coin {
             this.totalSupply = totalSupplyNode.asLong();
         }
 
-        JsonNode maxSupplyNode = marketData.get("max_supply");
-        if (maxSupplyNode != null) {
-            this.maxSupply = maxSupplyNode.asLong();
+        JsonNode priceChange24hNode = marketData.get("price_change_percentage_24h");
+        if (priceChange24hNode != null) {
+            this.priceChangePercentage24h = priceChange24hNode.asDouble();
         }
 
+        JsonNode priceChange7dNode = marketData.get("price_change_percentage_7d");
+        if (priceChange7dNode != null) {
+            this.priceChangePercentage7d = priceChange7dNode.asDouble();
+        }
+
+        JsonNode priceChange14dNode = marketData.get("price_change_percentage_14d");
+        if (priceChange14dNode != null) {
+            this.priceChangePercentage14d = priceChange14dNode.asDouble();
+        }
+
+        JsonNode priceChange30dNode = marketData.get("price_change_percentage_30d");
+        if (priceChange30dNode != null) {
+            this.priceChangePercentage30d = priceChange30dNode.asDouble();
+        }
+
+        JsonNode priceChange1yNode = marketData.get("price_change_percentage_1y");
+        if (priceChange1yNode != null) {
+            this.priceChangePercentage1y = priceChange1yNode.asDouble();
+        }
     }
 
     public void setImage(Object image) {
@@ -103,5 +141,38 @@ public class Coin {
             JsonNode node = (JsonNode) image;
             this.image = node.has("thumb") ? node.get("thumb").asText() : null;  // Если объект, сохраняем thumb
         }
+    }
+
+    private String formatWithThousandsSeparator(long value) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");  // Используется для добавления разделителей тысяч
+        return decimalFormat.format(value);
+    }
+
+    public String getFormattedMarketCapUsd() {
+        return formatWithThousandsSeparator(marketCapUsd);
+    }
+
+    public String getFormattedFullyDilutedValuationUsd() {
+        return formatWithThousandsSeparator(fullyDilutedValuationUsd);
+    }
+
+    public String getFormattedTotalVolumeUsd() {
+        return formatWithThousandsSeparator(totalVolumeUsd);
+    }
+
+    public String getFormattedCirculatingSupply() {
+        return formatWithThousandsSeparator(circulatingSupply);
+    }
+
+    public String getFormattedTotalSupply() {
+        return formatWithThousandsSeparator(totalSupply);
+    }
+
+    public String getFormattedHighDay() {
+        return formatWithThousandsSeparator(highDay);
+    }
+
+    public String getFormattedLowDay() {
+        return formatWithThousandsSeparator(lowDay);
     }
 }
