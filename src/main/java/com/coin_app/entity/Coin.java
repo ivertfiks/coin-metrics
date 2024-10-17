@@ -97,7 +97,6 @@ public class Coin {
             this.totalVolumeUsd = totalVolumeNode.get("usd").asLong();
         }
 
-
         JsonNode circulatingSupplyNode = marketData.get("circulating_supply");
         if (circulatingSupplyNode != null) {
             this.circulatingSupply = circulatingSupplyNode.asLong();
@@ -136,15 +135,15 @@ public class Coin {
 
     public void setImage(Object image) {
         if (image instanceof String) {
-            this.image = (String) image;  // Если это строка, сохраняем строку
+            this.image = (String) image;
         } else if (image instanceof JsonNode) {
             JsonNode node = (JsonNode) image;
-            this.image = node.has("thumb") ? node.get("thumb").asText() : null;  // Если объект, сохраняем thumb
+            this.image = node.has("thumb") ? node.get("thumb").asText() : null;
         }
     }
 
     private String formatWithThousandsSeparator(long value) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");  // Используется для добавления разделителей тысяч
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return decimalFormat.format(value);
     }
 
