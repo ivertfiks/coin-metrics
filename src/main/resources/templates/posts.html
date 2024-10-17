@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header-fragment.html :: head"></head>
+<body>
+<header class="navbar" th:replace="fragments/navigation-fragment.html :: navbar"></header>
+<div th:replace="fragments/navigation-fragment.html :: widget"></div>
+
+<header>
+    <h1>Create Post</h1>
+</header>
+
+<main>
+    <!-- Кнопка для создания нового поста -->
+    <button class="create-post-btn" onclick="openModal()">Create Post</button>
+
+    <!-- Модальное окно для создания поста -->
+    <div id="createPostModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">Close</span>
+            <h2>Create a New Post</h2>
+            <form action="/create-post" method="post">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required="required"/>
+                </div>
+
+                <div>
+                    <label for="textDescription">Text Description</label>
+                    <textarea id="textDescription" name="textDescription" required="required"></textarea>
+                </div>
+
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required="required"/>
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required="required"/>
+                </div>
+
+                <div>
+                    <button type="submit">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Отображение постов -->
+    <div class="posts-container">
+        <div th:each="post : ${posts}" class="post">
+            <!-- Ссылка для открытия поста -->
+            <a th:href="@{/post-data/{id}(id=${post.id})}" class="post-link">
+                <h2 th:text="${post.title}">Post Title</h2>
+                <div class="meta">
+                    <span th:text="${post.user.username}">User</span> |
+                    <span th:text="${post.user.email}">Email</span>
+                </div>
+                <p th:text="${post.text}">Post Content</p>
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2024 Your Website. All rights reserved.</p>
+</footer>
+
+<script>
+    // Открытие модального окна
+    function openModal() {
+        document.getElementById("createPostModal").style.display = "block";
+    }
+
+    // Закрытие модального окна
+    function closeModal() {
+        document.getElementById("createPostModal").style.display = "none";
+    }
+</script>
+</body>
+</html>

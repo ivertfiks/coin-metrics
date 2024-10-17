@@ -4,7 +4,8 @@ import com.coin_app.client.CoinGeckoApiClient;
 import com.coin_app.entity.Coin;
 import com.coin_app.service.CoinService;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CoinController {
 
     private final CoinService coinService;

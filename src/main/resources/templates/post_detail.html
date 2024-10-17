@@ -1,0 +1,72 @@
+<head th:replace="~{fragments/header-fragment.html :: head}">
+<body>
+<header class="navbar" th:replace="~{fragments/navigation-fragment.html :: navbar}"></header>
+<div th:replace="~{fragments/navigation-fragment.html :: widget}"></div>
+
+<main>
+    <!-- Контейнер для поста -->
+    <div class="posts-container">
+        <div class="post">
+            <!-- Заголовок поста -->
+            <h2 th:text="${post.title}"></h2>
+
+            <!-- Метаданные поста <span th:text="'Posted on: ' + ${post.creationDate}"></span>-->
+            <div class="meta">
+                <span th:text="'By: ' + ${post.user.username}"></span> |
+                <span th:text="'Posted on: ' + ${post.formattedCreationDate}">Date</span>
+            </div>
+
+            <!-- Текст поста -->
+            <p th:text="${post.text}"></p>
+        </div>
+
+        <!-- Кнопка для добавления комментария -->
+        <div class="create-comment">
+            <button class="create-post-btn" onclick="openCommentModal()">Add Comment</button>
+        </div>
+
+        <!-- Модальное окно для добавления комментария -->
+        <div class="modal" id="commentModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeCommentModal()">X</button>
+                <h2>Add a Comment</h2>
+                <form th:action="@{/create-comment(postId=${post.id})}" method="post">
+                    <input type="text" name="title" placeholder="Comment Title" required>
+                    <textarea name="textDescription" placeholder="Comment Content" required></textarea>
+                    <input type="text" name="username" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <button type="submit">Submit Comment</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Раздел для комментариев -->
+        <div class="comments">
+            <h3>Comments</h3>
+            <div th:each="comment : ${post.comments}" class="comment">
+                <div class="meta">
+                    <span th:text="'By: ' + ${comment.user.name}"></span> |
+                    <span th:text="'On: ' + ${comment.creationDate}"></span>
+                </div>
+                <p th:text="${comment.text}"></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Your Website</p>
+</footer>
+
+<script>
+    // Функции для управления модальным окном комментариев
+    function openCommentModal() {
+        document.getElementById('commentModal').style.display = 'block';
+    }
+
+    function closeCommentModal() {
+        document.getElementById('commentModal').style.display = 'none';
+    }
+</script>
+</body>
+</html>
