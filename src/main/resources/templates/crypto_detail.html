@@ -65,11 +65,16 @@
             </thead>
             <tbody>
             <tr>
-                <td class="green" th:text="${coin.priceChangePercentage24h} + '%'">+2.9%</td>
-                <td class="green" th:text="${coin.priceChangePercentage7d} + '%'">+10.0%</td>
-                <td class="green" th:text="${coin.priceChangePercentage14d} + '%'">+1.4%</td>
-                <td class="green" th:text="${coin.priceChangePercentage30d} + '%'">+2.3%</td>
-                <td class="green" th:text="${coin.priceChangePercentage1y} + '%'">+127.5%</td>
+                <td th:class="${coin.priceChangePercentage24h} > 0 ? 'green' : 'red'"
+                    th:text="${coin.priceChangePercentage24h} + '%'">+2.9%</td>
+                <td th:class="${coin.priceChangePercentage7d} > 0 ? 'green' : 'red'"
+                    th:text="${coin.priceChangePercentage7d} + '%'">+10.0%</td>
+                <td th:class="${coin.priceChangePercentage14d} > 0 ? 'green' : 'red'"
+                    th:text="${coin.priceChangePercentage14d} + '%'">+1.4%</td>
+                <td th:class="${coin.priceChangePercentage30d} > 0 ? 'green' : 'red'"
+                    th:text="${coin.priceChangePercentage30d} + '%'">+2.3%</td>
+                <td th:class="${coin.priceChangePercentage1y} > 0 ? 'green' : 'red'"
+                    th:text="${coin.priceChangePercentage1y} + '%'">+127.5%</td>
             </tr>
             </tbody>
         </table>

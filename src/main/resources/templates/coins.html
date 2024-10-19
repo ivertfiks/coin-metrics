@@ -38,8 +38,10 @@
           <a th:href="@{/coin-data/{id}(id=${coin.id})}" th:text="${coin.name}"></a>
         </td>
         <td th:text="${coin.currentPrice}"></td>
-        <td th:text="${coin.priceChangeDayInCurrency}"></td>
-        <td th:text="${coin.priceChangePercentageDayInCurrency} + '%'"></td>
+        <td th:class="${coin.getFormattedPriceChangeDayInCurrency} > 0 ? 'green' : 'red'"
+            th:text="${coin.getFormattedPriceChangeDayInCurrency}"></td>
+        <td th:class="${coin.getFormattedPriceChangePercentageDayInCurrency} > 0 ? 'green' : 'red'"
+            th:text="${coin.getFormattedPriceChangePercentageDayInCurrency} + '%'"></td>
         <td th:text="${coin.highDay}"></td>
         <td th:text="${coin.lowDay}"></td>
         <td th:text="${coin.marketCapRank}"></td>

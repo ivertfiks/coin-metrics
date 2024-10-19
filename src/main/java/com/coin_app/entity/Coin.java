@@ -133,6 +133,19 @@ public class Coin {
         }
     }
 
+    private String formatDoubleWithFourDecimals(double value) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.####");
+        return decimalFormat.format(value);
+    }
+
+    public String getFormattedPriceChangeDayInCurrency() {
+        return formatDoubleWithFourDecimals(priceChangeDayInCurrency);
+    }
+
+    public String getFormattedPriceChangePercentageDayInCurrency() {
+        return formatDoubleWithFourDecimals(priceChangePercentageDayInCurrency);
+    }
+
     public void setImage(Object image) {
         if (image instanceof String) {
             this.image = (String) image;
