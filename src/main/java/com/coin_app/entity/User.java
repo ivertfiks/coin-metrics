@@ -26,11 +26,10 @@ public class User {
 
     private String email;
 
-    @OneToMany
-    @JoinColumn(name = "posts_id")
+    @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
-    @OneToMany
-    @JoinColumn(name = "comments_id")
+    @OneToMany(mappedBy = "user")
     private List<Comment> comments;
+
 }

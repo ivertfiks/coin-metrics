@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,24 +19,20 @@ public class CommentController {
 
     private CommentService commentService;
     private PostService postService;
-    @PostMapping("/create-comment")
+    @PostMapping("/create-comment/{id}")
     public String createComment(@RequestParam(required = true) String title,
                                 @RequestParam(required = true) String textDescription,
                                 @RequestParam String username,
                                 @RequestParam String email,
-                                @RequestParam int postId,
+                                @PathVariable(value = "id") int postId,
                                 Model model) {
-        // Сохранение комментария
         Comment comment = commentService.save(title, textDescription, username, email, postId);
 
-        // Передача комментария в модель
         model.addAttribute("comment", comment);
 
-        // Передаем весь пост в модель для отображения
         Post post = postService.getPostById(postId);
         model.addAttribute("post", post);
 
-        // Возвращаем текущую страницу (обновляем)
         return "post_detail";
     }
 }

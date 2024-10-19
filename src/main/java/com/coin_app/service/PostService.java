@@ -22,11 +22,6 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public void addComment(){
-        Post post = new Post();
-        // post.setComments();  нужно тут прикрепить созданный комментарий к посту
-    }
-
     public List<Post> getAllPosts(){
         return postRepository.findAll();
     }

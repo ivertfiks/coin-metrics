@@ -33,8 +33,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "comments_id")
+    @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
     @CreationTimestamp
