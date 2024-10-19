@@ -226,12 +226,16 @@ footer {
 }
 
 /* Стиль для контейнера постов */
-.posts-container {
+.posts-container, .post-container {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+.post-container .post{
+    border: none;
 }
 
 .post {
@@ -248,7 +252,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.post .meta {
+.post .meta, .comments .meta {
     font-size: 12px;
     color: #777;
     margin-bottom: 10px;
@@ -335,4 +339,53 @@ footer {
 
 .modal-close:hover {
     background-color: #c82333;
+}
+
+.comments {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.comments .comment-username{
+    font-weight: bold;
+    float: left;
+    margin-right: 7px;
+    position: relative;
+    top: 1px;
+}
+
+.comments h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.comment {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.comment:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.comment-date {
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
 }

@@ -16,10 +16,10 @@ public class CommentService {
     private UserController userController;
     private PostService postService;
 
-    public Comment save(String title, String text, String username, String email, int postId){
+    public Comment save(String text, String username, String email, int postId){
         User user = userController.createUser(username, email);
         Post post = postService.getPostById(postId);
-        Comment comment = new Comment(title, text, user, post);
+        Comment comment = new Comment(text, user, post);
         return commentRepository.save(comment);
     }
 

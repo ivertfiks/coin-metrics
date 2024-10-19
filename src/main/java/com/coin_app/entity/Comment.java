@@ -19,19 +19,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    public Comment(String title, String text, User user, Post post) {
-        this.title = title;
+    public Comment(String text, User user, Post post) {
         this.text = text;
         this.user = user;
         this.post = post;
     }
-
-    public Comment(String title, String text) {
-        this.title = title;
-        this.text = text;
-    }
-
-    private String title;
 
     private String text;
 

@@ -20,13 +20,12 @@ public class CommentController {
     private CommentService commentService;
     private PostService postService;
     @PostMapping("/create-comment/{id}")
-    public String createComment(@RequestParam(required = true) String title,
-                                @RequestParam(required = true) String textDescription,
+    public String createComment(@RequestParam(required = true) String textDescription,
                                 @RequestParam String username,
                                 @RequestParam String email,
                                 @PathVariable(value = "id") int postId,
                                 Model model) {
-        Comment comment = commentService.save(title, textDescription, username, email, postId);
+        Comment comment = commentService.save(textDescription, username, email, postId);
 
         model.addAttribute("comment", comment);
 

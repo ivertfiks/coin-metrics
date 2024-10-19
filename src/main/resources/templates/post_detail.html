@@ -4,7 +4,7 @@
 <div th:replace="~{fragments/navigation-fragment.html :: widget}"></div>
 
 <main>
-    <div class="posts-container">
+    <div class="post-container">
         <div class="post">
             <h2 th:text="${post.title}"></h2>
 
@@ -25,7 +25,6 @@
                 <button class="modal-close" onclick="closeCommentModal()">X</button>
                 <h2>Add a Comment</h2>
                 <form th:action="@{/create-comment/{id}(id=${post.id})}" method="post">
-                    <input type="text" name="title" placeholder="Comment Title" required>
                     <textarea name="textDescription" placeholder="Comment Content" required></textarea>
                     <input type="text" name="username" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
@@ -37,12 +36,11 @@
         <div class="comments">
             <h3>Comments</h3>
             <div th:each="comment : ${post.comments}" class="comment">
+                <p class="comment-username" th:if="${comment.user != null}" th:text="${comment.user.username} + ' '"></p>
+                <p th:text="' ' + ${comment.text}" class="comment-text"></p>
                 <div class="meta">
-                    <span th:if="${comment.user != null}" th:text="'By: ' + ${comment.user.username}"></span>
-                    <span th:if="${comment.user == null}">Anonymous</span>
-                    <span th:text="'On: ' + ${comment.getFormattedCreationDate}"></span>
+                    <span class="comment-time" th:text="${comment.getFormattedCreationDate}"></span>
                 </div>
-                <p th:text="${comment.text}"></p>
             </div>
         </div>
     </div>
