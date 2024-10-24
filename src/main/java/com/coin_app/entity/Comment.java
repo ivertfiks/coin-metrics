@@ -24,7 +24,8 @@ public class Comment {
         this.user = user;
         this.post = post;
     }
-
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String text;
 
     @ManyToOne

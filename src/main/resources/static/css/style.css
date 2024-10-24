@@ -4,12 +4,17 @@
     box-sizing: border-box;
 }
 
+p, h1, h2, h3, h4, h5 {
+    word-break: break-word;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
 }
 
+/* Стили для шапки */
 header {
     padding: 20px;
     background-color: white;
@@ -26,6 +31,7 @@ header p {
     color: #777;
 }
 
+/* Стили для навигации */
 .navbar {
     background-color: #333;
 }
@@ -52,6 +58,7 @@ header p {
     background-color: #444;
 }
 
+/* Основные стили */
 main {
     margin: 20px;
 }
@@ -81,6 +88,7 @@ main {
     color: black;
 }
 
+/* Стили для таблицы */
 .coins-table {
     background-color: white;
     padding: 20px;
@@ -117,6 +125,7 @@ tbody tr:nth-child(even) {
     color: green;
 }
 
+/* Стили для футера */
 footer {
     text-align: center;
     padding: 20px;
@@ -125,7 +134,7 @@ footer {
     margin-top: 20px;
 }
 
-
+/* Стиль для шапки криптовалют */
 .crypto-header {
     display: flex;
     justify-content: space-between;
@@ -197,70 +206,86 @@ footer {
     text-align: center;
 }
 
-.red {
-    color: red;
-}
-
-.green {
-    color: green;
-}
-
 .recent-news {
     padding: 20px;
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
 }
 
-.coin-icon{
+.coin-icon {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
 
-.widget{
+.widget {
     float: left;
     width: 700px;
 }
 
 /* Стиль для контейнера постов */
-.posts-container, .post-container {
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Стили для отдельного поста */
+.post {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    width: 100%;
 }
 
-.post-container .post{
-    border: none;
+/* Контейнер для изображения поста */
+.post-image-container {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.post {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+.post-image-container img{
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
 }
 
-.post:last-child {
-    border-bottom: none;
+/* Изображение поста */
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Контент поста */
+.post-content {
+    text-align: center;
 }
 
 .post h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
-.post .meta, .comments .meta {
+.post .meta {
     font-size: 12px;
     color: #777;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .post p {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* Кнопка для создания поста */
@@ -341,6 +366,7 @@ footer {
     background-color: #c82333;
 }
 
+/* Стили для комментариев */
 .comments {
     background-color: white;
     padding: 20px;
@@ -349,7 +375,7 @@ footer {
     margin-top: 20px;
 }
 
-.comments .comment-username{
+.comments .comment-username {
     font-weight: bold;
     float: left;
     margin-right: 7px;

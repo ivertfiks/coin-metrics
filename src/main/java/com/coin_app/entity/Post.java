@@ -19,15 +19,22 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    public Post(String title, String text, User user) {
+    public Post(String title, String text, String image, User user) {
         this.title = title;
         this.text = text;
+        this.image = image;
         this.user = user;
     }
 
     private String title;
-
+    
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String text;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

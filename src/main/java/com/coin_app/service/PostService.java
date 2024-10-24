@@ -16,9 +16,9 @@ public class PostService {
     private UserController userController;
     private PostRepository postRepository;
 
-    public Post create(String title, String textDescription, String username, String email){
+    public Post create(String title, String textDescription, String image, String username, String email){
         User user = userController.createUser(username, email);
-        Post post = new Post(title, textDescription, user);
+        Post post = new Post(title, textDescription, image, user);
         return postRepository.save(post);
     }
 

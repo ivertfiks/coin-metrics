@@ -25,7 +25,7 @@ public class PostController {
     public String getAllPostsData(Model model) {
         List<Post> posts = postService.getAllPosts();
         if (posts == null || posts.isEmpty()) {
-            model.addAttribute("posts", new ArrayList<>()); // Пустой список вместо null
+            model.addAttribute("posts", new ArrayList<>());
         } else {
             model.addAttribute("posts", posts);
         }
@@ -35,10 +35,12 @@ public class PostController {
     @PostMapping("/create-post")
     public String createPost(@RequestParam(required = true) String title,
                              @RequestParam(required = true) String textDescription,
+                             @RequestParam(required = false, defaultValue = "https://i.imgur.com/8i54bDu.jpeg")
+                                 String image,
                              @RequestParam String username,
                              @RequestParam String email,
                              Model model){
-        Post post = postService.create(title, textDescription, username, email);
+        Post post = postService.create(title, textDescription, image, username, email);
         model.addAttribute("post", post);
         return "post_detail";
     }

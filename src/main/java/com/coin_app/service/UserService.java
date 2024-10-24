@@ -5,6 +5,8 @@ import com.coin_app.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.DuplicateFormatFlagsException;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -18,6 +20,6 @@ public class UserService {
         if(userRepository.findUserByEmail(user.getEmail()) == userRepository.findUserByUsername(user.getUsername())){
             return userRepository.findUserByUsername(user.getUsername());
         }
-        return null;
+        throw new RuntimeException("Duplicate user exception"); // need to fix this moment
     }
 }
